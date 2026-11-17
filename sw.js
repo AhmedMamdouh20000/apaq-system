@@ -1,5 +1,5 @@
 /* ABQ PERFUMES — offline cache. Bump the version when you upload a new index.html. */
-const C = 'abq-v2-2';
+const C = 'abq-v2-3';
 const CORE = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', e => {
