@@ -148,8 +148,10 @@ input[type=number]{direction:ltr;unicode-bidi:isolate;text-align:right}
 
 /* KPI */
 .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:16px}
-.kpis.six{grid-template-columns:repeat(3,minmax(0,1fr))}
 .kpis.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.kpi-btn{display:block;width:100%;text-align:start;font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.kpi-btn:hover{border-color:var(--gold)}
+.kpi-btn .kpi-sub{display:block}
 .kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);padding:18px;min-width:0;transition:transform .2s var(--ease),border-color .2s}
 .kpi-top{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:13px;font-weight:600}
 .kpi-ic{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;border:1px solid var(--line-strong);color:var(--gold);flex:none}
@@ -253,6 +255,7 @@ td .cv{min-width:0}
 .sheet-body{padding:20px}
 .dlg-msg{white-space:pre-line;line-height:1.9;margin-bottom:18px;color:var(--text)}
 .preview{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:12px}
+.preview.two{grid-template-columns:repeat(2,minmax(0,1fr))}
 .preview div{min-width:0}
 .preview small{display:block;font-size:12px;color:var(--muted)}
 .preview b{display:block;text-align:right;font-size:15px;font-weight:700}
@@ -294,7 +297,7 @@ td .cv{min-width:0}
   .nav button{justify-content:center;padding:12px 0}
   .nav .lbl{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
   .main{padding:24px 22px 40px}
-  .kpis,.kpis.six{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
   .g-2-1,.g-3{grid-template-columns:repeat(2,minmax(0,1fr))}
   .g-2-1>:first-child{grid-column:1/-1}
 }
@@ -303,9 +306,9 @@ td .cv{min-width:0}
   .app{display:block}
   .sidebar{position:fixed;top:auto;left:0;right:0;bottom:0;height:auto;width:100%;flex-direction:row;padding:6px calc(6px + var(--sar)) calc(6px + var(--sab)) calc(6px + var(--sal));border-inline-end:0;border-top:1px solid var(--line-strong);background:var(--surface);gap:0}
   .brand,.side-foot{display:none}
-  .nav{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:2px;width:100%}
-  .nav button{flex-direction:column;justify-content:center;gap:3px;min-height:54px;padding:6px 2px;font-size:12px;line-height:1.15;text-align:center;border-radius:12px}
-  .nav .lbl{position:static;width:auto;height:auto;clip:auto;white-space:nowrap;font-size:11px}
+  .nav{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:1px;width:100%}
+  .nav button{flex-direction:column;justify-content:center;gap:3px;min-height:54px;padding:6px 1px;font-size:12px;line-height:1.15;text-align:center;border-radius:12px}
+  .nav .lbl{position:static;width:auto;height:auto;clip:auto;white-space:nowrap;font-size:10.5px;max-width:100%}
   .nav .lbl-x{display:none}
   .main{padding:0 calc(16px + var(--sar)) calc(96px + var(--sab)) calc(16px + var(--sal))}
   .topbar{position:sticky;top:0;z-index:20;margin:0 calc(-16px - var(--sar)) 16px calc(-16px - var(--sal));padding:calc(10px + var(--sat)) calc(16px + var(--sar)) 10px calc(16px + var(--sal));background:var(--bg);border-bottom:1px solid var(--line);justify-content:flex-start}
@@ -357,10 +360,14 @@ td .cv{min-width:0}
   .preview{grid-template-columns:minmax(0,1fr)}
   .preview div{display:flex;justify-content:space-between;align-items:center}
   .kpi-val{font-size:17px}
-  .kpis.six .kpi-val{font-size:16px}
+  .nav .lbl{font-size:10px;letter-spacing:-.2px}
   .ring-val{font-size:18px}
   .sheet-body{padding:16px}
   .seg button{padding:6px 12px}
+}
+@media (max-width:380px){
+  .nav button{padding:6px 0}
+  .nav .lbl{font-size:9.5px}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
@@ -398,6 +405,7 @@ td .cv{min-width:0}
   <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V5M7.5 9L12 4.5 16.5 9M5 20h14"/></symbol>
   <symbol id="i-trend" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></symbol>
   <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M4 7h15a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M4 7V6a1 1 0 0 1 1-1h11"/><path d="M16 13h2"/></symbol>
+  <symbol id="i-crate" viewBox="0 0 24 24"><path d="M3 11h18v9H3z"/><path d="M5 11V8h14v3"/><path d="M7 8V5h10v3"/><path d="M9.5 15.5h5"/></symbol>
   <symbol id="i-box" viewBox="0 0 24 24"><path d="M4 8l8-4 8 4v8l-8 4-8-4z"/><path d="M4 8l8 4 8-4M12 12v8"/></symbol>
  </defs>
 </svg>
@@ -411,6 +419,7 @@ td .cv{min-width:0}
   <nav class="nav" id="nav" aria-label="التنقل الرئيسي">
    <button type="button" data-page="dashboard" title="الرئيسية"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-home"/></svg><span class="lbl">الرئيسية</span></button>
    <button type="button" data-page="sales" title="المبيعات"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sales"/></svg><span class="lbl">المبيعات</span></button>
+   <button type="button" data-page="wholesale" title="الجملة"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-crate"/></svg><span class="lbl">الجملة</span></button>
    <button type="button" data-page="expenses" title="المصروفات"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-expenses"/></svg><span class="lbl">المصروفات</span></button>
    <button type="button" data-page="debts" title="المديونيات"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-debts"/></svg><span class="lbl">المديونيات</span></button>
    <button type="button" data-page="reports" title="التقارير"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-reports"/></svg><span class="lbl">التقارير</span></button>
@@ -443,26 +452,26 @@ td .cv{min-width:0}
 
    <div class="kpis">
     <div class="kpi rise" style="--i:1"><div class="kpi-top"><span class="kpi-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sales"/></svg></span>إجمالي المبيعات</div><div class="kpi-val num gold" id="dSales"></div><div class="kpi-sub">قيمة كل عمليات البيع المسجلة</div></div>
-    <div class="kpi rise" style="--i:2"><div class="kpi-top"><span class="kpi-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-trend"/></svg></span>إجمالي الربح الأساسي</div><div class="kpi-val num" id="dGross"></div><div class="kpi-sub">المبيعات ناقص تكلفة البضاعة</div></div>
-    <div class="kpi rise" style="--i:3"><div class="kpi-top"><span class="kpi-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-expenses"/></svg></span>إجمالي المصروفات التشغيلية</div><div class="kpi-val num terra" id="dExpenses"></div><div class="kpi-sub">لا تشمل سحوبات المالك</div></div>
-    <div class="kpi rise" style="--i:4"><div class="kpi-top"><span class="kpi-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wallet"/></svg></span>صافي الربح بعد المصروفات</div><div class="kpi-val num" id="dNet"></div><div class="kpi-sub">بعد خصم المصروفات التشغيلية</div></div>
+    <div class="kpi rise" style="--i:2"><div class="kpi-top"><span class="kpi-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-expenses"/></svg></span>إجمالي المصروفات التشغيلية</div><div class="kpi-val num terra" id="dExpenses"></div><div class="kpi-sub">لا تشمل سحوبات المالك</div></div>
+    <div class="kpi rise" style="--i:3"><div class="kpi-top"><span class="kpi-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wallet"/></svg></span>صافي الربح</div><div class="kpi-val num" id="dNet"></div><div class="kpi-sub">المبيعات − المصروفات التشغيلية</div></div>
+    <button type="button" class="kpi kpi-btn rise" style="--i:4" data-action="go" data-page="wholesale" aria-label="إجمالي تكلفة الجملة، للعرض فقط. افتح تبويب الجملة"><span class="kpi-top"><span class="kpi-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-crate"/></svg></span>إجمالي تكلفة الجملة</span><span class="kpi-val num" id="dWholesale"></span><span class="kpi-sub">للعرض فقط — لا تُخصم من أي حساب</span></button>
    </div>
 
    <div class="grid g-2-1">
     <div class="card rise" style="--i:5">
-     <div class="card-head"><h3>المبيعات والأرباح خلال آخر 7 أيام</h3><div class="legend"><span><i class="g"></i>المبيعات</span><span><i class="s"></i>الربح</span><span><i class="t"></i>خسارة</span></div></div>
+     <div class="card-head"><h3>المبيعات والمصروفات خلال آخر 7 أيام</h3><div class="legend"><span><i class="g"></i>المبيعات</span><span><i class="t"></i>المصروفات التشغيلية</span></div></div>
      <div id="chart7"></div>
     </div>
     <div class="card rise" style="--i:6">
-     <div class="card-head"><h3>هوامش الربح</h3></div>
+     <div class="card-head"><h3>النسب الرئيسية</h3></div>
      <div class="rings">
       <div class="ring-item">
        <div class="ring-wrap"><svg class="ring" viewBox="0 0 100 100" aria-hidden="true"><circle class="ring-bg" cx="50" cy="50" r="42"/><circle class="ring-fg" id="arcNet" cx="50" cy="50" r="42" transform="rotate(-90 50 50)"/></svg><div class="ring-val num" id="pctNet"></div></div>
        <div><h3>هامش صافي الربح</h3><p>صافي الربح ÷ المبيعات</p></div>
       </div>
       <div class="ring-item">
-       <div class="ring-wrap"><svg class="ring" viewBox="0 0 100 100" aria-hidden="true"><circle class="ring-bg" cx="50" cy="50" r="42"/><circle class="ring-fg" id="arcGross" cx="50" cy="50" r="42" transform="rotate(-90 50 50)"/></svg><div class="ring-val num" id="pctGross"></div></div>
-       <div><h3>هامش الربح الأساسي</h3><p>الربح الأساسي ÷ المبيعات</p></div>
+       <div class="ring-wrap"><svg class="ring" viewBox="0 0 100 100" aria-hidden="true"><circle class="ring-bg" cx="50" cy="50" r="42"/><circle class="ring-fg" id="arcOper" cx="50" cy="50" r="42" transform="rotate(-90 50 50)"/></svg><div class="ring-val num" id="pctOper"></div></div>
+       <div><h3>نسبة المصروفات من المبيعات</h3><p>المصروفات التشغيلية ÷ المبيعات</p></div>
       </div>
      </div>
     </div>
@@ -491,7 +500,7 @@ td .cv{min-width:0}
   <!-- Sales -->
   <section class="section" id="sales">
    <div class="sec-head"><h2>إدارة المبيعات</h2><button type="button" class="btn primary" data-action="add-sale"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-plus"/></svg>تسجيل عملية بيع</button></div>
-   <div class="notice">سجّل تكلفة الوحدة وسعر بيع الوحدة والكمية. النظام يحسب إجمالي البيع والتكلفة والربح تلقائيًا، ويجمع المبيعات تراكميًا عبر الأيام.</div>
+   <div class="notice">سجّل تكلفة الوحدة (جملة) وسعر بيع الوحدة والكمية. إجمالي البيع = سعر البيع × الكمية. أما تكلفة الجملة فتُعرض للمتابعة فقط ولا تُخصم من المبيعات أو الربح، وتجد إجماليها في تبويب «الجملة».</div>
    <div class="filters card">
     <div class="field"><label for="saleFrom">من تاريخ</label><input type="date" id="saleFrom"></div>
     <div class="field"><label for="saleTo">إلى تاريخ</label><input type="date" id="saleTo"></div>
@@ -500,6 +509,30 @@ td .cv{min-width:0}
    </div>
    <div class="totals" id="salesTotals"></div>
    <div class="list-card" id="salesList"></div>
+  </section>
+
+  <!-- Wholesale -->
+  <section class="section" id="wholesale">
+   <div class="sec-head"><h2>حسابات الجملة</h2><button type="button" class="btn" data-action="export-wholesale"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-download"/></svg>تصدير CSV</button></div>
+   <div class="notice">تكلفة الجملة هنا للمتابعة فقط، ولا تُخصم من إجمالي المبيعات أو صافي الربح أو أي حساب آخر.</div>
+   <div class="filters card">
+    <div class="field"><label for="wsFrom">من تاريخ</label><input type="date" id="wsFrom"></div>
+    <div class="field"><label for="wsTo">إلى تاريخ</label><input type="date" id="wsTo"></div>
+    <div class="chips" id="wsChips" role="group" aria-label="فترات سريعة">
+     <button type="button" class="chip" data-action="ws-range" data-range="all" aria-pressed="true">كل الفترة</button>
+     <button type="button" class="chip" data-action="ws-range" data-range="today" aria-pressed="false">اليوم</button>
+     <button type="button" class="chip" data-action="ws-range" data-range="week" aria-pressed="false">آخر 7 أيام</button>
+     <button type="button" class="chip" data-action="ws-range" data-range="month" aria-pressed="false">هذا الشهر</button>
+    </div>
+   </div>
+   <div class="kpis">
+    <div class="kpi"><div class="kpi-top"><span class="kpi-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-box"/></svg></span>إجمالي القطع المباعة (جملة)</div><div class="kpi-val num" id="wUnits"></div><div class="kpi-sub">مجموع الكميات المباعة</div></div>
+    <div class="kpi"><div class="kpi-top"><span class="kpi-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-crate"/></svg></span>إجمالي تكلفة الجملة</div><div class="kpi-val num gold" id="wCost"></div><div class="kpi-sub">تكلفة الوحدة × الكمية</div></div>
+    <div class="kpi"><div class="kpi-top"><span class="kpi-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></span>عدد العمليات</div><div class="kpi-val num" id="wCount"></div><div class="kpi-sub">عمليات البيع في الفترة</div></div>
+    <div class="kpi"><div class="kpi-top"><span class="kpi-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sales"/></svg></span>إجمالي المبيعات (للمرجع)</div><div class="kpi-val num" id="wRev"></div><div class="kpi-sub">سعر البيع × الكمية</div></div>
+   </div>
+   <div class="card-head" style="margin-bottom:12px"><h3>تفصيل الأصناف</h3></div>
+   <div class="list-card" id="wsList"></div>
   </section>
 
   <!-- Expenses -->
@@ -547,20 +580,18 @@ td .cv{min-width:0}
      <button type="button" class="chip" data-action="rep-range" data-range="month" aria-pressed="false">هذا الشهر</button>
     </div>
    </div>
-   <div class="kpis six">
+   <div class="kpis">
     <div class="kpi"><div class="kpi-top"><span class="kpi-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sales"/></svg></span>المبيعات</div><div class="kpi-val num gold" id="rSales"></div></div>
-    <div class="kpi"><div class="kpi-top"><span class="kpi-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-box"/></svg></span>تكلفة البضاعة</div><div class="kpi-val num" id="rCost"></div></div>
-    <div class="kpi"><div class="kpi-top"><span class="kpi-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-trend"/></svg></span>الربح الأساسي</div><div class="kpi-val num" id="rGross"></div></div>
     <div class="kpi"><div class="kpi-top"><span class="kpi-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-expenses"/></svg></span>المصروفات التشغيلية</div><div class="kpi-val num terra" id="rOper"></div></div>
     <div class="kpi"><div class="kpi-top"><span class="kpi-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wallet"/></svg></span>صافي الربح</div><div class="kpi-val num" id="rNet"></div></div>
     <div class="kpi"><div class="kpi-top"><span class="kpi-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-debts"/></svg></span>سحوبات المالك (منفصلة)</div><div class="kpi-val num gold" id="rOwner"></div></div>
    </div>
    <div class="grid g-2">
     <div class="card"><div class="card-head"><h3>ملخص الفترة</h3></div><div id="repSummary"></div></div>
-    <div class="card"><div class="card-head"><h3>الأصناف الأعلى ربحًا</h3></div><div id="topProducts"></div></div>
+    <div class="card"><div class="card-head"><h3>الأصناف الأعلى مبيعًا</h3></div><div id="topProducts"></div></div>
    </div>
    <div class="card" style="margin-bottom:16px">
-    <div class="card-head"><h3 id="repChartTitle">الربح الأساسي خلال الفترة</h3><div class="legend"><span><i class="s"></i>ربح</span><span><i class="t"></i>خسارة</span></div></div>
+    <div class="card-head"><h3 id="repChartTitle">المبيعات خلال الفترة</h3><div class="legend"><span><i class="g"></i>المبيعات</span></div></div>
     <div id="repChart"></div>
    </div>
    <div class="card" style="margin-bottom:16px">
@@ -609,8 +640,8 @@ const KEY='abq_accounting_v1';
 const BACKUP_KEY='abq_accounting_v1_backup_pre_v2';
 const CATS=['إيجار','شحن وتوصيل','تغليف','تسويق وإعلانات','مشتريات تشغيلية','مصاريف المالك','أخرى'];
 const OWNER_CAT='مصاريف المالك';
-const PAGES=['dashboard','sales','expenses','debts','reports','backup'];
-const TITLES={dashboard:'لوحة التحكم',sales:'إدارة المبيعات',expenses:'المصروفات والسحوبات',debts:'المديونيات',reports:'التقارير المالية',backup:'النسخ الاحتياطي'};
+const PAGES=['dashboard','sales','wholesale','expenses','debts','reports','backup'];
+const TITLES={dashboard:'لوحة التحكم',sales:'إدارة المبيعات',wholesale:'حسابات الجملة',expenses:'المصروفات والسحوبات',debts:'المديونيات',reports:'التقارير المالية',backup:'النسخ الاحتياطي'};
 const RING_C=2*Math.PI*42;
 const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
 
@@ -725,16 +756,15 @@ function commit(okMsg){
 
 /* ---------- accounting ---------- */
 const saleRev=x=>round2(x.price*x.qty);
-const saleCost=x=>round2(x.cost*x.qty);
-const saleProfit=x=>round2(saleRev(x)-saleCost(x));
+const saleWs=x=>round2(x.cost*x.qty); // wholesale total: informational only, never deducted
 const remaining=d=>round2(d.amount-d.paid);
 const isPaid=d=>remaining(d)<=0;
 function sums(sales,expenses){
-  let revenue=0,cost=0,oper=0,owner=0;
-  sales.forEach(x=>{revenue=round2(revenue+saleRev(x));cost=round2(cost+saleCost(x))});
+  let revenue=0,wholesale=0,oper=0,owner=0;
+  sales.forEach(x=>{revenue=round2(revenue+saleRev(x));wholesale=round2(wholesale+saleWs(x))});
   expenses.forEach(x=>{if(x.kind==='owner')owner=round2(owner+x.amount);else oper=round2(oper+x.amount)});
-  const gross=round2(revenue-cost);
-  return{revenue,cost,gross,oper,owner,net:round2(gross-oper)};
+  // net = sales - operating expenses; wholesale is informational and feeds nothing
+  return{revenue,wholesale,oper,owner,net:round2(revenue-oper)};
 }
 function sortRecs(arr){
   return arr.map((x,i)=>[x,i]).sort((a,b)=>{
@@ -889,18 +919,16 @@ function openSaleModal(id){
    fld('sf-cost','تكلفة الوحدة / الجملة (ج.م)','<input id="sf-cost" type="number" min="0" step="0.01" inputmode="decimal" value="'+(x?x.cost:'')+'">')+
    fld('sf-price','سعر بيع الوحدة (ج.م)','<input id="sf-price" type="number" min="0" step="0.01" inputmode="decimal" value="'+(x?x.price:'')+'">')+
    fld('sf-note','ملاحظات (اختياري)','<input id="sf-note" placeholder="اسم العميل أو تفاصيل إضافية" value="'+esc(x?x.note:'')+'">','full')+
-   '<div class="preview full" aria-live="polite"><div><small>إجمالي البيع</small><b class="num" id="pv-rev"></b></div><div><small>إجمالي التكلفة</small><b class="num" id="pv-cost"></b></div><div><small>الربح</small><b class="num" id="pv-profit"></b></div></div>'+
+   '<div class="preview two full" aria-live="polite"><div><small>إجمالي البيع</small><b class="num" id="pv-rev"></b></div><div><small>إجمالي تكلفة الجملة</small><b class="num" id="pv-cost"></b></div></div>'+
    '<div class="form-actions full"><button class="btn primary" type="submit">حفظ العملية</button><button class="btn" type="button" data-close>إلغاء</button></div>'+
-   '<p class="hint full" style="font-size:12px">الربح = (سعر البيع − تكلفة الوحدة) × الكمية. أدخل تكلفة الشراء الفعلية للوحدة، وليس إجمالي الفاتورة.</p></form>';
+   '<p class="hint full" style="font-size:12px">إجمالي البيع = سعر البيع × الكمية. تكلفة الجملة للمتابعة فقط ولا تُخصم من المبيعات أو الربح. أدخل تكلفة الشراء الفعلية للوحدة، وليس إجمالي الفاتورة.</p></form>';
   const m=openModal({title:x?'تعديل عملية بيع':'تسجيل عملية بيع',size:'',body,focus:x?null:'#sf-name'});
   const form=m.el.querySelector('#saleForm');
   const g=i=>form.querySelector('#'+i);
   bindClearErr(form);
   const upd=()=>{
     const q=Number(g('sf-qty').value)||0,c=Number(g('sf-cost').value)||0,p=Number(g('sf-price').value)||0;
-    const rev=round2(p*q),cost=round2(c*q),pr=round2(rev-cost);
-    g('pv-rev').textContent=fmt(rev);g('pv-cost').textContent=fmt(cost);g('pv-profit').textContent=fmt(pr);
-    g('pv-profit').className='num '+signCls(pr);
+    g('pv-rev').textContent=fmt(round2(p*q));g('pv-cost').textContent=fmt(round2(c*q));
   };
   form.addEventListener('input',upd);upd();
   const auto=['sf-size','sf-cost','sf-price'];
@@ -922,10 +950,8 @@ function openSaleModal(id){
   };
   g('sf-name').addEventListener('input',onName);
   g('sf-name').addEventListener('change',onName);
-  let busy=false;
-  form.addEventListener('submit',async e=>{
+  form.addEventListener('submit',e=>{
     e.preventDefault();
-    if(busy)return;
     const v={date:g('sf-date').value,name:g('sf-name').value.trim(),size:g('sf-size').value,qty:g('sf-qty').value,cost:g('sf-cost').value,price:g('sf-price').value,note:g('sf-note').value.trim()};
     const errs={};
     if(!validDate(v.date))errs['sf-date']='اختر تاريخًا صحيحًا';
@@ -936,13 +962,6 @@ function openSaleModal(id){
     if(!numOk(v.price,0))errs['sf-price']='اكتب سعر البيع (0 أو أكثر)';
     if(!finishValidation(form,errs))return;
     const rec={date:v.date,name:v.name,size:toNum(v.size),qty:Number(v.qty),cost:toNum(v.cost),price:toNum(v.price),note:v.note};
-    if(rec.price<rec.cost){
-      busy=true;
-      const loss=round2((rec.cost-rec.price)*rec.qty);
-      const ok=await confirmDialog({title:'بيع بخسارة',message:'سعر البيع أقل من التكلفة، وده معناه خسارة قدرها '+fmt(loss)+'.\nهل تريد الحفظ رغم ذلك؟',confirmText:'احفظ رغم الخسارة',danger:true});
-      busy=false;
-      if(!ok)return;
-    }
     if(x){db.sales=db.sales.map(a=>a.id===x.id?Object.assign({},a,rec):a)}
     else db.sales.push(Object.assign({id:uid(),createdAt:Date.now()},rec));
     m.close();
@@ -1120,25 +1139,26 @@ const state={expFilter:'all',debtFilter:'all'};
 function renderDashboard(){
   const s=sums(db.sales,db.expenses);
   animateNumber($('#dSales'),s.revenue);
-  setSigned($('#dGross'),s.gross);
   animateNumber($('#dExpenses'),s.oper);
   setSigned($('#dNet'),s.net);
-  setRing('Net',s.revenue>0?s.net/s.revenue*100:null,10);
-  setRing('Gross',s.revenue>0?s.gross/s.revenue*100:null,30);
+  animateNumber($('#dWholesale'),s.wholesale);
+  setRing('Net',s.revenue>0?s.net/s.revenue*100:null,m=>m<0?'terra':m>=10?'sage':'gold');
+  setRing('Oper',s.revenue>0?s.oper/s.revenue*100:null,m=>m<=30?'sage':m<=60?'gold':'terra');
 
-  // 7-day chart
+  // 7-day chart: sales vs operating expenses
   const t=today(),byDay={};
-  db.sales.forEach(x=>{const o=byDay[x.date]||(byDay[x.date]={rev:0,profit:0});o.rev=round2(o.rev+saleRev(x));o.profit=round2(o.profit+saleProfit(x))});
+  db.sales.forEach(x=>{const o=byDay[x.date]||(byDay[x.date]={rev:0,oper:0});o.rev=round2(o.rev+saleRev(x))});
+  db.expenses.forEach(x=>{if(x.kind==='owner')return;const o=byDay[x.date]||(byDay[x.date]={rev:0,oper:0});o.oper=round2(o.oper+x.amount)});
   const cols=[];
   for(let i=6;i>=0;i--){
-    const k=addDays(t,-i),o=byDay[k]||{rev:0,profit:0};
+    const k=addDays(t,-i),o=byDay[k]||{rev:0,oper:0};
     const wd=arDate(k,{weekday:'short'});
-    cols.push({label:wd,tip:arDate(k,{weekday:'long',day:'numeric',month:'long'})+' · المبيعات '+fmt(o.rev)+' · الربح '+fmt(o.profit),bars:[{v:o.rev,cls:'gold'},{v:o.profit,cls:'sage'}]});
+    cols.push({label:wd,tip:arDate(k,{weekday:'long',day:'numeric',month:'long'})+' · المبيعات '+fmt(o.rev)+' · المصروفات التشغيلية '+fmt(o.oper),bars:[{v:o.rev,cls:'gold'},{v:o.oper,cls:'terra'}]});
   }
-  $('#chart7').innerHTML=barChart(cols,150)||emptyHTML('لا توجد مبيعات خلال آخر 7 أيام',['add-sale','＋ تسجيل مبيعة'],true);
+  $('#chart7').innerHTML=barChart(cols,150)||emptyHTML('لا توجد مبيعات أو مصروفات خلال آخر 7 أيام',['add-sale','＋ تسجيل مبيعة'],true);
 
   // comparison
-  const rows=[['المبيعات',s.revenue,'gold'],['تكلفة البضاعة',s.cost,'muted'],['المصروفات التشغيلية',s.oper,'terra'],['صافي الربح',s.net,s.net<0?'terra':'sage']];
+  const rows=[['المبيعات',s.revenue,'gold'],['المصروفات التشغيلية',s.oper,'terra'],['صافي الربح',s.net,s.net<0?'terra':'sage']];
   const max=Math.max.apply(null,rows.map(r=>Math.abs(r[1])));
   $('#compare').innerHTML=max===0?emptyHTML('سجّل مبيعات ومصروفات لتظهر المقارنة',null,true):rows.map(r=>{
     const ratio=Math.abs(r[1])/max;
@@ -1149,7 +1169,7 @@ function renderDashboard(){
   const w1=[addDays(t,-6),t],w0=[addDays(t,-13),addDays(t,-7)];
   const win=w=>{const ss=db.sales.filter(x=>inRange(x.date,w[0],w[1])),ee=db.expenses.filter(x=>inRange(x.date,w[0],w[1]));return sums(ss,ee)};
   const a=win(w1),b=win(w0);
-  const tr3=[['المبيعات',a.revenue,b.revenue,true],['الربح الأساسي',a.gross,b.gross,true],['المصروفات التشغيلية',a.oper,b.oper,false]];
+  const tr3=[['المبيعات',a.revenue,b.revenue,true],['المصروفات التشغيلية',a.oper,b.oper,false],['صافي الربح',a.net,b.net,true]];
   $('#trends').innerHTML=tr3.map(r=>{
     const c=changeInfo(r[1],r[2],r[3]);
     return '<div class="trend"><span class="tl">'+r[0]+'</span><span class="tv num">'+fmt(r[1])+'</span><span class="tc '+c.cls+'">'+c.txt+'</span></div>';
@@ -1157,7 +1177,7 @@ function renderDashboard(){
 
   // summary
   $('#dashSummary').innerHTML=[
-    srow('تكلفة البضاعة المباعة',money(s.cost)),
+    srow('إجمالي تكلفة الجملة (للعرض)',money(s.wholesale)),
     srow('سحوبات المالك',money(s.owner)),
     srow('مستحقات لنا',money(receivables(),'sage')),
     srow('مديونيات علينا',money(payables(),'terra')),
@@ -1166,10 +1186,9 @@ function renderDashboard(){
 
   // recent
   const rec=sortRecs(db.sales).slice(0,6);
-  $('#recentSales').innerHTML=rec.length?tableHTML(['التاريخ','الصنف','الحجم','الكمية','إجمالي البيع','الربح'],rec.map((x,i)=>{
-    const p=saleProfit(x);
-    return tr(i,td('التاريخ',dateCell(x.date))+td('الصنف',esc(x.name))+td('الحجم','<span class="num">'+fmtN(x.size)+' ml</span>')+td('الكمية','<span class="num">'+fmtN(x.qty)+'</span>')+td('إجمالي البيع',money(saleRev(x)))+td('الربح',money(p,signCls(p))));
-  }).join('')):emptyHTML('لا توجد مبيعات مسجلة بعد',['add-sale','＋ تسجيل أول عملية بيع']);
+  $('#recentSales').innerHTML=rec.length?tableHTML(['التاريخ','الصنف','الحجم','الكمية','إجمالي البيع'],rec.map((x,i)=>
+    tr(i,td('التاريخ',dateCell(x.date))+td('الصنف',esc(x.name))+td('الحجم','<span class="num">'+fmtN(x.size)+' ml</span>')+td('الكمية','<span class="num">'+fmtN(x.qty)+'</span>')+td('إجمالي البيع',money(saleRev(x))))
+  ).join('')):emptyHTML('لا توجد مبيعات مسجلة بعد',['add-sale','＋ تسجيل أول عملية بيع']);
 }
 function changeInfo(cur,prev,upGood){
   cur=round2(cur);prev=round2(prev);
@@ -1179,16 +1198,16 @@ function changeInfo(cur,prev,upGood){
   const up=p>0;
   return{txt:(up?'▲ ':'▼ ')+nf1.format(Math.abs(p))+'%',cls:up===upGood?'sage':'terra'};
 }
-function setRing(key,margin,goodAt){
+function setRing(key,margin,clsOf){
   const arc=$('#arc'+key),val=$('#pct'+key);
   const fill=margin==null?0:Math.max(0,Math.min(100,margin))/100;
-  const cls=margin==null?'muted':margin<0?'terra':margin>=goodAt?'sage':'gold';
+  const cls=margin==null?'muted':clsOf(margin);
   arc.style.strokeDasharray=RING_C.toFixed(2);
   if(!arc._init){arc.style.strokeDashoffset=RING_C.toFixed(2);arc._init=true}
   void arc.getBoundingClientRect();
   arc.setAttribute('class','ring-fg '+cls+(fill===0?' empty':''));
   arc.style.strokeDashoffset=(RING_C*(1-fill)).toFixed(2);
-  val.className='ring-val num '+(cls==='muted'?'muted':cls);
+  val.className='ring-val num '+cls;
   animateNumber(val,margin==null?null:margin,fmtPct);
 }
 
@@ -1199,14 +1218,13 @@ function salesFiltered(){
 function renderSales(){
   const arr=salesFiltered();
   const tot=sums(arr,[]);
-  $('#salesTotals').innerHTML=db.sales.length?'<span>عدد العمليات<b class="num">'+fmtN(arr.length)+'</b></span><span>إجمالي المبيعات<b class="num gold">'+fmt(tot.revenue)+'</b></span><span>إجمالي الربح<b class="num '+signCls(tot.gross)+'">'+fmt(tot.gross)+'</b></span>':'';
+  $('#salesTotals').innerHTML=db.sales.length?'<span>عدد العمليات<b class="num">'+fmtN(arr.length)+'</b></span><span>إجمالي المبيعات<b class="num gold">'+fmt(tot.revenue)+'</b></span><span>إجمالي الجملة<b class="num">'+fmt(tot.wholesale)+'</b></span>':'';
   const list=$('#salesList');
   if(!db.sales.length){list.innerHTML=emptyHTML('لا توجد مبيعات مسجلة بعد',['add-sale','＋ تسجيل أول عملية بيع']);return}
   if(!arr.length){list.innerHTML=emptyHTML('لا توجد نتائج مطابقة للفلاتر',['clear-sale-filters','مسح الفلاتر']);return}
-  list.innerHTML=tableHTML(['التاريخ','اسم الصنف','الحجم','الكمية','تكلفة الوحدة','سعر البيع','الإجمالي','الربح','إجراءات'],arr.map((x,i)=>{
-    const p=saleProfit(x);
+  list.innerHTML=tableHTML(['التاريخ','الصنف','الحجم','الكمية','تكلفة الوحدة (جملة)','سعر البيع','إجمالي البيع','إجمالي الجملة','إجراءات'],arr.map((x,i)=>{
     const name=esc(x.name)+(x.note?'<span class="sub" title="'+esc(x.note)+'">'+esc(x.note)+'</span>':'');
-    return tr(i,td('التاريخ',dateCell(x.date))+td('اسم الصنف',name)+td('الحجم','<span class="num">'+fmtN(x.size)+' ml</span>')+td('الكمية','<span class="num">'+fmtN(x.qty)+'</span>')+td('تكلفة الوحدة',money(x.cost))+td('سعر البيع',money(x.price))+td('الإجمالي',money(saleRev(x)))+td('الربح',money(p,signCls(p)))+td('','<div class="acts">'+abtn('edit-sale',x.id,'edit','تعديل')+abtn('delete-sale',x.id,'trash','حذف','del')+'</div>','act-td'));
+    return tr(i,td('التاريخ',dateCell(x.date))+td('الصنف',name)+td('الحجم','<span class="num">'+fmtN(x.size)+' ml</span>')+td('الكمية','<span class="num">'+fmtN(x.qty)+'</span>')+td('تكلفة الوحدة (جملة)',money(x.cost))+td('سعر البيع',money(x.price))+td('إجمالي البيع',money(saleRev(x)))+td('إجمالي الجملة',money(saleWs(x)))+td('','<div class="acts">'+abtn('edit-sale',x.id,'edit','تعديل')+abtn('delete-sale',x.id,'trash','حذف','del')+'</div>','act-td'));
   }).join(''));
 }
 function renderExpenses(){
@@ -1236,6 +1254,44 @@ function renderDebts(){
   }).join(''));
 }
 
+function rangePresets(){
+  const td0=today();
+  return{all:['',''],today:[td0,td0],week:[addDays(td0,-6),td0],month:[monthStart(),td0]};
+}
+function wsRange(){
+  let f=$('#wsFrom').value,t=$('#wsTo').value;
+  if(f&&t&&f>t){const x=f;f=t;t=x;$('#wsFrom').value=f;$('#wsTo').value=t}
+  return{f,t};
+}
+function wsRows(ss){
+  const g={};
+  ss.forEach(x=>{
+    const k=x.name.toLowerCase()+'|'+x.size,o=g[k]||(g[k]={name:x.name,size:x.size,qty:0,cost:0,rev:0});
+    o.qty=round2(o.qty+x.qty);o.cost=round2(o.cost+saleWs(x));o.rev=round2(o.rev+saleRev(x));
+  });
+  return Object.keys(g).map(k=>g[k]).sort((a,b)=>b.cost-a.cost||(a.name<b.name?-1:a.name>b.name?1:0)).map(o=>Object.assign(o,{avg:o.qty>0?round2(o.cost/o.qty):0}));
+}
+function wsSales(){const r=wsRange();return db.sales.filter(x=>inRange(x.date,r.f,r.t))}
+function renderWholesale(){
+  const r=wsRange(),f=r.f,t=r.t;
+  const pre=rangePresets();
+  $$('#wsChips .chip').forEach(c=>{const p=pre[c.dataset.range];c.setAttribute('aria-pressed',String(p[0]===f&&p[1]===t))});
+  const ss=db.sales.filter(x=>inRange(x.date,f,t));
+  const s=sums(ss,[]);
+  const units=ss.reduce((a,x)=>a+x.qty,0);
+  const cnt=v=>fmtN(Math.round(v));
+  animateNumber($('#wUnits'),units,cnt);
+  animateNumber($('#wCost'),s.wholesale);
+  animateNumber($('#wCount'),ss.length,cnt);
+  animateNumber($('#wRev'),s.revenue);
+  const list=$('#wsList');
+  if(!db.sales.length){list.innerHTML=emptyHTML('لا توجد مبيعات مسجلة بعد',['add-sale','＋ تسجيل أول عملية بيع']);return}
+  if(!ss.length){list.innerHTML=emptyHTML('لا توجد مبيعات في الفترة المحددة',null);return}
+  list.innerHTML=tableHTML(['الصنف','الحجم','الكمية','متوسط تكلفة الوحدة','إجمالي تكلفة الجملة','إجمالي البيع'],wsRows(ss).map((o,i)=>
+    tr(i,td('الصنف',esc(o.name))+td('الحجم','<span class="num">'+fmtN(o.size)+' ml</span>')+td('الكمية','<span class="num">'+fmtN(o.qty)+'</span>')+td('متوسط تكلفة الوحدة',money(o.avg))+td('إجمالي تكلفة الجملة',money(o.cost,'gold'))+td('إجمالي البيع',money(o.rev)))
+  ).join(''));
+}
+
 function repRange(){
   let f=$('#repFrom').value,t=$('#repTo').value;
   if(f&&t&&f>t){const x=f;f=t;t=x;$('#repFrom').value=f;$('#repTo').value=t}
@@ -1249,39 +1305,39 @@ function renderReports(){
   $$('#repChips .chip').forEach(c=>{const p=presets[c.dataset.range];c.setAttribute('aria-pressed',String(p[0]===f&&p[1]===t))});
   const ss=db.sales.filter(x=>inRange(x.date,f,t)),ee=db.expenses.filter(x=>inRange(x.date,f,t));
   const s=sums(ss,ee);
-  animateNumber($('#rSales'),s.revenue);animateNumber($('#rCost'),s.cost);setSigned($('#rGross'),s.gross);
+  animateNumber($('#rSales'),s.revenue);
   animateNumber($('#rOper'),s.oper);setSigned($('#rNet'),s.net);animateNumber($('#rOwner'),s.owner);
   const units=ss.reduce((a,x)=>a+x.qty,0);
-  const gm=s.revenue>0?fmtPct(s.gross/s.revenue*100):'—',nm=s.revenue>0?fmtPct(s.net/s.revenue*100):'—';
+  const nm=s.revenue>0?fmtPct(s.net/s.revenue*100):'—',om=s.revenue>0?fmtPct(s.oper/s.revenue*100):'—';
   $('#repSummary').innerHTML=[
     srow('عدد عمليات البيع','<span class="num">'+fmtN(ss.length)+'</span>'),
     srow('عدد القطع المباعة','<span class="num">'+fmtN(units)+'</span>'),
-    srow('هامش الربح الأساسي','<span class="num '+(s.revenue>0?signCls(s.gross):'')+'">'+gm+'</span>'),
     srow('هامش صافي الربح','<span class="num '+(s.revenue>0?signCls(s.net):'')+'">'+nm+'</span>'),
+    srow('نسبة المصروفات من المبيعات','<span class="num">'+om+'</span>'),
     srow('سحوبات المالك (لا تخصم من الربح)',money(s.owner))
   ].join('');
 
-  // top products
+  // top products by sales
   const prods={};
-  ss.forEach(x=>{const k=x.name.toLowerCase(),o=prods[k]||(prods[k]={name:x.name,qty:0,profit:0});o.qty+=x.qty;o.profit=round2(o.profit+saleProfit(x))});
-  const top=Object.keys(prods).map(k=>prods[k]).sort((a,b)=>b.profit-a.profit).slice(0,8);
-  const maxP=Math.max.apply(null,top.map(p=>Math.abs(p.profit)).concat([0]));
-  $('#topProducts').innerHTML=top.length?top.map(p=>'<div class="top-row"><span>'+esc(p.name)+' <small class="muted">('+fmtN(p.qty)+' قطعة)</small></span><b class="num '+signCls(p.profit)+'">'+fmt(p.profit)+'</b><div class="bar"><i class="'+(p.profit<0?'neg':'')+'" style="transform:scaleX('+(maxP>0?Math.max(Math.abs(p.profit)/maxP,.015):0).toFixed(4)+')"></i></div></div>').join(''):emptyHTML('لا توجد مبيعات في الفترة',null,true);
+  ss.forEach(x=>{const k=x.name.toLowerCase(),o=prods[k]||(prods[k]={name:x.name,qty:0,rev:0});o.qty+=x.qty;o.rev=round2(o.rev+saleRev(x))});
+  const top=Object.keys(prods).map(k=>prods[k]).sort((a,b)=>b.rev-a.rev).slice(0,8);
+  const maxP=Math.max.apply(null,top.map(p=>p.rev).concat([0]));
+  $('#topProducts').innerHTML=top.length?top.map(p=>'<div class="top-row"><span>'+esc(p.name)+' <small class="muted">('+fmtN(p.qty)+' قطعة)</small></span><b class="num gold">'+fmt(p.rev)+'</b><div class="bar"><i style="transform:scaleX('+(maxP>0?Math.max(p.rev/maxP,.015):0).toFixed(4)+')"></i></div></div>').join(''):emptyHTML('لا توجد مبيعات في الفترة',null,true);
 
   // daily + chart
   const by={};
-  ss.forEach(x=>{const o=by[x.date]||(by[x.date]={rev:0,cost:0,profit:0});o.rev=round2(o.rev+saleRev(x));o.cost=round2(o.cost+saleCost(x));o.profit=round2(o.profit+saleProfit(x))});
+  ss.forEach(x=>{by[x.date]=round2((by[x.date]||0)+saleRev(x))});
   const days=Object.keys(by).sort();
   if(!days.length){
     $('#dailyWrap').innerHTML=emptyHTML('لا توجد مبيعات في الفترة المحددة',null,true);
     $('#repChart').innerHTML=emptyHTML('لا توجد بيانات لعرض الرسم',null,true);
-    $('#repChartTitle').textContent='الربح الأساسي خلال الفترة';
+    $('#repChartTitle').textContent='المبيعات خلال الفترة';
     return;
   }
-  let cr=0,cp=0;
-  $('#dailyWrap').innerHTML='<table class="dt"><thead><tr><th scope="col">التاريخ</th><th scope="col">مبيعات اليوم</th><th scope="col">تكلفة اليوم</th><th scope="col">ربح اليوم</th><th scope="col">مبيعات تراكمية</th><th scope="col">ربح تراكمي</th></tr></thead><tbody>'+days.map(d=>{
-    const o=by[d];cr=round2(cr+o.rev);cp=round2(cp+o.profit);
-    return '<tr><td>'+dateCell(d)+'</td><td>'+money(o.rev)+'</td><td>'+money(o.cost)+'</td><td>'+money(o.profit,signCls(o.profit))+'</td><td>'+money(cr,'gold')+'</td><td>'+money(cp,signCls(cp))+'</td></tr>';
+  let cr=0;
+  $('#dailyWrap').innerHTML='<table class="dt"><thead><tr><th scope="col">التاريخ</th><th scope="col">مبيعات اليوم</th><th scope="col">مبيعات تراكمية</th></tr></thead><tbody>'+days.map(d=>{
+    cr=round2(cr+by[d]);
+    return '<tr><td>'+dateCell(d)+'</td><td>'+money(by[d])+'</td><td>'+money(cr,'gold')+'</td></tr>';
   }).join('')+'</tbody></table>';
   const start=f||days[0],end=t||days[days.length-1];
   const nDays=Math.max(1,Math.round((parseYmd(end)-parseYmd(start))/864e5)+1);
@@ -1289,7 +1345,7 @@ function renderReports(){
   if(nDays>45){mode=(nDays/30>36)?'year':'month'}
   const keyOf=d=>mode==='day'?d:mode==='month'?d.slice(0,7):d.slice(0,4);
   const buckets={};
-  days.forEach(d=>{const k=keyOf(d),o=buckets[k]||(buckets[k]={rev:0,profit:0});o.rev=round2(o.rev+by[d].rev);o.profit=round2(o.profit+by[d].profit)});
+  days.forEach(d=>{const k=keyOf(d);buckets[k]=round2((buckets[k]||0)+by[d])});
   const keys=[];
   if(mode==='day'){for(let i=0;i<nDays;i++)keys.push(addDays(start,i))}
   else if(mode==='month'){
@@ -1298,15 +1354,15 @@ function renderReports(){
   }else{for(let y=Number(start.slice(0,4));y<=Number(end.slice(0,4));y++)keys.push(String(y))}
   const step=keys.length>24?Math.ceil(keys.length/12):keys.length>12?2:1;
   const cols=keys.map((k,i)=>{
-    const o=buckets[k]||{rev:0,profit:0};
+    const v=buckets[k]||0;
     let label,full;
     if(mode==='day'){label=String(Number(k.slice(8)));full=arDate(k,{weekday:'long',day:'numeric',month:'long',year:'numeric'})}
     else if(mode==='month'){label=k.slice(5)+'/'+k.slice(2,4);full=arDate(k+'-01',{month:'long',year:'numeric'})}
     else{label=k;full=k}
-    return{label:i%step===0?label:'',tip:full+' · المبيعات '+fmt(o.rev)+' · الربح '+fmt(o.profit),bars:[{v:o.profit,cls:'sage'}]};
+    return{label:i%step===0?label:'',tip:full+' · المبيعات '+fmt(v),bars:[{v:v,cls:'gold'}]};
   });
-  $('#repChartTitle').textContent=mode==='day'?'الربح الأساسي اليومي خلال الفترة':mode==='month'?'الربح الأساسي الشهري خلال الفترة':'الربح الأساسي السنوي';
-  $('#repChart').innerHTML=barChart(cols,170)||emptyHTML('لا توجد أرباح لعرضها',null,true);
+  $('#repChartTitle').textContent=mode==='day'?'المبيعات اليومية خلال الفترة':mode==='month'?'المبيعات الشهرية خلال الفترة':'المبيعات السنوية';
+  $('#repChart').innerHTML=barChart(cols,170)||emptyHTML('لا توجد مبيعات لعرضها',null,true);
 }
 
 function renderBackup(){
@@ -1318,7 +1374,7 @@ function renderBackup(){
   $('#preV2Box').innerHTML=has?'<p class="hint">تم حفظ نسخة من بياناتك القديمة (قبل الإصدار 2) تلقائيًا عند الترقية. يمكنك تحميلها في أي وقت.</p><button type="button" class="btn sm" data-action="download-prev2" style="margin-top:8px"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-download"/></svg>تحميل النسخة السابقة</button>':'';
 }
 
-const renderers={dashboard:renderDashboard,sales:renderSales,expenses:renderExpenses,debts:renderDebts,reports:renderReports,backup:renderBackup};
+const renderers={dashboard:renderDashboard,sales:renderSales,wholesale:renderWholesale,expenses:renderExpenses,debts:renderDebts,reports:renderReports,backup:renderBackup};
 const dirty=new Set(PAGES);
 let current='dashboard';
 function renderPage(p){dirty.delete(p);renderers[p]()}
@@ -1362,12 +1418,18 @@ function csvCell(v){
   if(typeof v==='string'&&/^[=+\-@\t\r]/.test(s))s="'"+s;
   return '"'+s.replace(/"/g,'""')+'"';
 }
+function saveCSV(name,head,rows){
+  if(!rows.length){toast('لا توجد بيانات في الفترة المحددة للتصدير','info');return}
+  const csv='\uFEFF'+[head].concat(rows).map(r=>r.map(csvCell).join(',')).join('\r\n')+'\r\n';
+  download(name+today()+'.csv',csv,'text/csv;charset=utf-8;');
+  toast('تم تجهيز ملف CSV ('+fmtN(rows.length)+' سجل)','success');
+}
 function exportCSV(kind){
   const r=repRange(),f=r.f,t=r.t;
   let head,rows,name;
   if(kind==='sales'){
-    head=['التاريخ','الصنف','الحجم ml','الكمية','تكلفة الوحدة','سعر البيع','إجمالي البيع','إجمالي التكلفة','الربح'];
-    rows=sortRecs(db.sales).filter(x=>inRange(x.date,f,t)).map(x=>[x.date,x.name,x.size,x.qty,x.cost,x.price,saleRev(x),saleCost(x),saleProfit(x)]);
+    head=['التاريخ','الصنف','الحجم ml','الكمية','تكلفة الوحدة (جملة)','سعر البيع','إجمالي البيع','إجمالي الجملة'];
+    rows=sortRecs(db.sales).filter(x=>inRange(x.date,f,t)).map(x=>[x.date,x.name,x.size,x.qty,x.cost,x.price,saleRev(x),saleWs(x)]);
     name='ABQ-sales-';
   }else if(kind==='expenses'){
     head=['التاريخ','النوع','التصنيف','الوصف','القيمة'];
@@ -1378,10 +1440,11 @@ function exportCSV(kind){
     rows=sortRecs(db.debts).filter(x=>inRange(x.date,f,t)).map(x=>[x.date,x.type==='in'?'لينا':'علينا',x.person,x.description,x.amount,x.paid,remaining(x),isPaid(x)?'مسددة':'مفتوحة']);
     name='ABQ-debts-';
   }
-  if(!rows.length){toast('لا توجد بيانات في الفترة المحددة للتصدير','info');return}
-  const csv='\uFEFF'+[head].concat(rows).map(r=>r.map(csvCell).join(',')).join('\r\n')+'\r\n';
-  download(name+today()+'.csv',csv,'text/csv;charset=utf-8;');
-  toast('تم تجهيز ملف CSV ('+fmtN(rows.length)+' سجل)','success');
+  saveCSV(name,head,rows);
+}
+function exportWholesale(){
+  const rows=wsRows(wsSales()).map(o=>[o.name,o.size,o.qty,o.avg,o.cost,o.rev]);
+  saveCSV('ABQ-wholesale-',['الصنف','الحجم ml','الكمية','متوسط تكلفة الوحدة','إجمالي تكلفة الجملة','إجمالي البيع'],rows);
 }
 
 /* ---------- backup actions ---------- */
@@ -1456,7 +1519,13 @@ document.addEventListener('click',e=>{
       if(p){$('#repFrom').value=p[0];$('#repTo').value=p[1];renderReports()}
       break;
     }
+    case 'ws-range':{
+      const p=rangePresets()[t.dataset.range];
+      if(p){$('#wsFrom').value=p[0];$('#wsTo').value=p[1];renderWholesale()}
+      break;
+    }
     case 'export-csv':exportCSV(t.dataset.kind);break;
+    case 'export-wholesale':exportWholesale();break;
     case 'export-json':exportJSON();break;
     case 'download-prev2':downloadPrev2();break;
     case 'restore':restoreFile();break;
@@ -1470,6 +1539,7 @@ document.addEventListener('focusin',e=>{const c=e.target.closest&&e.target.close
 $('#nav').addEventListener('click',e=>{const b=e.target.closest('button[data-page]');if(b)go(b.dataset.page)});
 ['saleFrom','saleTo','saleSearch'].forEach(i=>{$('#'+i).addEventListener('input',renderSales);$('#'+i).addEventListener('change',renderSales)});
 ['repFrom','repTo'].forEach(i=>{$('#'+i).addEventListener('change',renderReports)});
+['wsFrom','wsTo'].forEach(i=>{$('#'+i).addEventListener('change',renderWholesale)});
 
 /* ---------- swipe navigation: interactive pager that follows the finger ---------- */
 (function(){
