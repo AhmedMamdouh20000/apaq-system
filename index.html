@@ -35,6 +35,21 @@
   color-scheme:light;
 }
 html.theming,html.theming *{transition:background-color .28s,border-color .28s,color .28s,fill .28s,stroke .28s!important}
+
+/* ── circular theme reveal (View Transitions) ── */
+::view-transition-old(root),
+::view-transition-new(root){animation:none;mix-blend-mode:normal}
+::view-transition-new(root){
+  will-change:clip-path;
+  animation:theme-reveal .8s cubic-bezier(.4,0,.2,1) both
+}
+@keyframes theme-reveal{
+  from{clip-path:circle(0px at var(--vt-x,50%) var(--vt-y,50%))}
+  to  {clip-path:circle(var(--vt-r,2000px) at var(--vt-x,50%) var(--vt-y,50%))}
+}
+@media(prefers-reduced-motion:reduce){
+  ::view-transition-new(root){animation:none}
+}
 .theme-btn{margin-inline-start:auto;border-color:var(--line-strong);color:var(--gold);flex:none}
 .theme-btn .ic{width:19px;height:19px}
 .theme-btn .t-moon{display:none}
@@ -1531,7 +1546,7 @@ document.addEventListener('click',e=>{
     case 'restore':restoreFile();break;
     case 'wipe':wipeAll();break;
     case 'install':doInstall();break;
-    case 'toggle-theme':toggleTheme();break;
+    case 'toggle-theme':toggleTheme(e.clientX,e.clientY);break;
   }
 });
 document.addEventListener('mouseover',e=>{const c=e.target.closest&&e.target.closest('.ccol');if(c)selectCol(c)});
@@ -1669,12 +1684,21 @@ function syncTheme(){
   if(mt)mt.setAttribute('content',t==='light'?'#f5f2ec':'#0f0f0e');
   if(b){const l=t==='light'?'التبديل للوضع الداكن':'التبديل للوضع الفاتح';b.setAttribute('aria-label',l);b.title=l}
 }
-function toggleTheme(){
+function toggleTheme(ox,oy){
   const t=curTheme()==='light'?'dark':'light',root=document.documentElement;
-  if(!reduceMotion.matches){root.classList.add('theming');setTimeout(()=>root.classList.remove('theming'),340)}
-  root.setAttribute('data-theme',t);
-  try{localStorage.setItem(THEME_KEY,t)}catch(e){}
-  syncTheme();
+  const apply=()=>{root.setAttribute('data-theme',t);try{localStorage.setItem(THEME_KEY,t)}catch(e){}syncTheme()};
+  if(!reduceMotion.matches&&document.startViewTransition){
+    const x=ox??window.innerWidth/2, y=oy??window.innerHeight/2;
+    const W=window.innerWidth, H=window.innerHeight;
+    const maxR=Math.ceil(Math.hypot(Math.max(x,W-x),Math.max(y,H-y)));
+    root.style.setProperty('--vt-x',x+'px');
+    root.style.setProperty('--vt-y',y+'px');
+    root.style.setProperty('--vt-r',maxR+'px');
+    document.startViewTransition(apply);
+  }else{
+    if(!reduceMotion.matches){root.classList.add('theming');setTimeout(()=>root.classList.remove('theming'),340)}
+    apply();
+  }
 }
 window.matchMedia('(prefers-color-scheme: light)').addEventListener('change',e=>{
   let saved=null;try{saved=localStorage.getItem(THEME_KEY)}catch(err){}
